@@ -19,4 +19,16 @@ public class InvoiceService_Test {
         double fare = invoiceGenerator.calculateFare(distance, time);
         assertEquals(25, fare);
     }
+
+    /*
+    Test Case - 2 (Given MIN Distance And MIN Time Should Return MINIMAL Fare)
+     */
+    @Test
+    public void givenDistanceAndTime_ShouldReturnMinFare() {
+        double distance = 0.1;
+        int time = 1;
+        double fare = invoiceGenerator.calculateFare(distance, time);
+        assertEquals(5, fare);
+    }
+
 }
