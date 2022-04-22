@@ -3,9 +3,9 @@ package com.bridgelabz;
 import java.util.Objects;
 
 public class InvoiceSummary {
-    private final double totalFare;
-    private final int numOfRides;
-    private final double averageFare;
+    private double totalFare;
+    private int numOfRides;
+    private double averageFare;
 
     public InvoiceSummary(double totalFare, int numOfRides) {
         this.totalFare = totalFare;
