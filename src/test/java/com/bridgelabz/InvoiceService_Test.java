@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class InvoiceService_Test {
 
     public static InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
-
+    public static double fare;
     /*
     Test Case - 1 (Given Distance And Time Should Return Actual Fare)
      */
@@ -16,7 +16,7 @@ public class InvoiceService_Test {
 
         double distance = 2;
         int time = 5;
-        double fare = invoiceGenerator.calculateFare(distance, time);
+        fare = invoiceGenerator.calculateFare(distance, time);
         assertEquals(25, fare);
     }
 
@@ -27,8 +27,19 @@ public class InvoiceService_Test {
     public void givenDistanceAndTime_ShouldReturnMinFare() {
         double distance = 0.1;
         int time = 1;
-        double fare = invoiceGenerator.calculateFare(distance, time);
+        fare = invoiceGenerator.calculateFare(distance, time);
         assertEquals(5, fare);
     }
 
+    /*
+    Test Case -3 (Given Multiple Rides Should Return Total Fare)
+     */
+    @Test
+    public void givenMultipleRides_ShouldReturnTotalFare() {
+        Ride[] rides = {new Ride(2, 5),
+                new Ride(0.1, 1)
+        };
+        fare = invoiceGenerator.calculateFare(rides);
+        assertEquals(30,fare);
+    }
 }

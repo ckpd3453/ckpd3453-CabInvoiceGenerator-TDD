@@ -18,4 +18,16 @@ public class InvoiceGenerator {
             return MIN_FARE;
         return fare;
     }
+
+    /*
+    Method to get Multiple ride total fare
+     */
+    public double calculateFare(Ride[] rides) {
+        double totalFare = 0;
+        for (Ride ride:rides){
+            totalFare += this.calculateFare(ride.distance, ride.time);
+        }
+        return totalFare;
+    }
+
 }
