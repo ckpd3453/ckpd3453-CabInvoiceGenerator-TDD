@@ -14,9 +14,7 @@ public class InvoiceGenerator {
      */
     public double calculateFare(double distance, int time) {
         double fare = (distance * COST_PER_KM) + (time * COST_PER_MIN);
-        if (fare < MIN_FARE)
-            return MIN_FARE;
-        return fare;
+        return Math.max(fare, MIN_FARE);
     }
 
     /*
