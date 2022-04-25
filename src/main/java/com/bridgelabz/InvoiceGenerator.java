@@ -1,5 +1,7 @@
 package com.bridgelabz;
 
+import java.util.Map;
+
 public class InvoiceGenerator {
 
     /*
@@ -12,7 +14,7 @@ public class InvoiceGenerator {
     /*
     Method To get Actual Fare
      */
-    public double calculateFare(double distance, int time) {
+    public static double calculateFare(double distance, int time) {
         double fare = (distance * COST_PER_KM) + (time * COST_PER_MIN);
         return Math.max(fare, MIN_FARE);
     }
@@ -22,10 +24,17 @@ public class InvoiceGenerator {
      */
     public InvoiceSummary calculateFare(Ride[] rides) {
         double totalFare = 0;
-        for (Ride ride:rides){
-            totalFare += this.calculateFare(ride.distance, ride.time);
+        for (Ride ride : rides) {
+            totalFare += ride.rideType.calculateCategoryFare(ride.distance, ride.time);
         }
-        return new InvoiceSummary(totalFare,rides.length);
+        return new InvoiceSummary(totalFare, rides.length);
     }
 
+    /*
+    Method to get list of a user using user id
+     */
+    public InvoiceSummary calculateFare(String userID, Map<String, Ride[]> rideBook) {
+        InvoiceSummary totalFare = calculateFare(rideBook.get(userID));
+        return totalFare;
+    }
 }
